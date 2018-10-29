@@ -1,0 +1,5 @@
+# requirements.txt for TopoBot.
+# Contains non-essential modules, such as those for linting & syntax checking.
+
+flake8
+pylint
