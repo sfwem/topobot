@@ -111,7 +111,8 @@ def get_olsr(topo_host=topobot.TOPO_HOST, topo_port=topobot.TOPO_PORT):
     return lines
 
 
-def gen_dot(dot_data):
+def gen_dot():
+    dot_data = get_oslr()
     topology = get_table(dot_data, 'Topology')
     hna = get_table(dot_data, 'HNA')
 
