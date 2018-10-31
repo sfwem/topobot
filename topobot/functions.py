@@ -38,7 +38,7 @@ def get_table(lines, table_name):
 
 def get_host(ip: str):
     try:
-        host = socket.get_hostbyaddr(ip)[0]
+        host = socket.gethostbyaddr(ip)[0]
         return host.replace('.local.mesh', '').replace('-', "-\\n", 1)
     except socket.herror:
         return ip
@@ -161,9 +161,11 @@ def gen_dot():
                 else:
                     darkness = 1.0 / float(t[4])
                 gray = "gray" + str(int(65.0 * (1.0 - darkness)))
-                output += ('    "' + t[6] + '" -> "' + t[5] + '" [label="' +
-                      round_cost(t[4]) + '",color=' + gray + ',fontcolor=' +
-                      gray + '];')
+                output += (
+                    '    "' + t[6] + '" -> "' + t[5] + '" [label="' +
+                    round_cost(t[4]) + '",color=' + gray + ',fontcolor=' +
+                    gray + '];'
+                )
 
 
         output += "  }"
@@ -177,9 +179,11 @@ def gen_dot():
             else:
                 darkness = 1.0 / float(t[4])
             gray = "gray" + str(int(65.0 * (1.0 - darkness)))
-            output += ('    "' + t[6] + '" -> "' + t[5] + '" [label="' +
-                  round_cost(t[4]) + '",color=' + gray + ',fontcolor=' +
-                  gray + '];')
+            output += (
+                '    "' + t[6] + '" -> "' + t[5] + '" [label="' +
+                round_cost(t[4]) + '",color=' + gray + ',fontcolor=' +
+                gray + '];'
+            )
 
     output += '}'
 
@@ -205,7 +209,7 @@ def dot2png(dot_data):
     dot_proc.communicate()
 
     convert_cmd: str = (
-        "convert %s -background \#C0C0C0 -gravity East "
+        r"convert %s -background \#C0C0C0 -gravity East "
         "-append %s" % (tmp_file + '.1.png', tmp_file + '.2.png')
     )
     convert_args: list = shlex.split(convert_cmd)

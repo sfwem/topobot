@@ -3,6 +3,8 @@
 
 """TopoBot Plugin."""
 
+import re
+
 import slackbot
 
 import topobot
@@ -17,7 +19,7 @@ def default_handler(message):
     message.reply(topobot.HELP_CMDS)
 
 
-@slackbot.bot.respond_to('current')
+@slackbot.bot.respond_to('current', re.IGNORECASE)
 def current_topography(message):
     topo_dot = topobot.gen_dot()
     topo_png = topobot.dot2png(topo_dot)

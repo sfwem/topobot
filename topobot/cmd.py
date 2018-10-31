@@ -3,9 +3,12 @@
 
 """TopoBot Commands."""
 
+import argparse
 import sys
 import logging
 import logging.config
+
+import topobot
 
 from slackbot import settings
 
@@ -22,6 +25,21 @@ __license__ = 'Apache License, Version 2.0'
 
 
 def cli():
+    parser = argparse.ArgumentParser(description='TopoBot')
+    parser.add_argument('-c', dest='cron', option='store_true')
+    args = parser.parse_args()
+
+    if args.cron:
+        run_cron()
+    else:
+        run_bot()
+
+def run_cron():
+    topo_dot = topobot.gen_dot()
+    topo_png = topobot.dot2png(topo_dot)
+    # TODO
+
+def run_bot():
     lkw = {
         'format': (
             '%(asctime)s topobot %(levelname)s '

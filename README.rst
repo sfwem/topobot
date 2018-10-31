@@ -16,6 +16,8 @@ Installation
 
 You'll need to create a Slack Bot and create a Slack Bot API Token, then::
 
+    $ sudo apt-get install graphviz
+    $ sudo apt-get install imagemagick -y
     pip install topobot
 
 
