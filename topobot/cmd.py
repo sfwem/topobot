@@ -26,7 +26,7 @@ __license__ = 'Apache License, Version 2.0'
 
 def cli():
     parser = argparse.ArgumentParser(description='TopoBot')
-    parser.add_argument('-c', dest='cron', option='store_true')
+    parser.add_argument('-c', dest='cron', options='store_true')
     args = parser.parse_args()
 
     if args.cron:
