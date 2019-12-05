@@ -28,7 +28,7 @@ import shlex
 import subprocess
 import tempfile
 
-import dns
+#import dns
 
 import topobot
 
@@ -40,10 +40,10 @@ def get_table(lines, table_name):
 
 
 def get_host(ip: str, resolver: str = None):
-    resolver = resolver or ip
-    res = dns.resolver.Resolver()
-    res.nameservers = [resolver]
-    dns.resolver.override_system_resolver(res)
+    #resolver = resolver or ip
+    #res = dns.resolver.Resolver()
+    #res.nameservers = [resolver]
+    #dns.resolver.override_system_resolver(res)
     try:
         host = socket.gethostbyaddr(ip)[0]
         return host.replace('.local.mesh', '').replace('-', "-\\n", 1)
