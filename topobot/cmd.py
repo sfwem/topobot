@@ -4,6 +4,7 @@
 """TopoBot Commands."""
 
 import argparse
+import os
 import sys
 import logging
 import logging.config
@@ -13,7 +14,7 @@ import topobot
 from slackbot import settings
 
 settings.PLUGINS = ['topobot.plugin']
-settings.ERRORS_TO = 'gba'
+settings.ERRORS_TO = os.environ.get('SLACK_ERRORS_TO', 'gba')
 settings.DEBUG = True
 
 from slackbot.bot import Bot  # NOQA pylint: disable=C0413

@@ -28,7 +28,10 @@ import shlex
 import subprocess
 import tempfile
 
+import dns
+
 import topobot
+
 
 def get_table(lines, table_name):
     lines = lines[lines.index("Table: " + table_name) + 2:]
@@ -36,7 +39,11 @@ def get_table(lines, table_name):
     return [line.split("\t") for line in lines]
 
 
-def get_host(ip: str):
+def get_host(ip: str, resolver: str = None):
+    resolver = resolver or ip
+    res = dns.resolver.Resolver()
+    res.nameservers = [resolver]
+    dns.resolver.override_system_resolver(res)
     try:
         host = socket.gethostbyaddr(ip)[0]
         return host.replace('.local.mesh', '').replace('-', "-\\n", 1)
