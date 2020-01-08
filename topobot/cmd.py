@@ -4,43 +4,75 @@
 """TopoBot Commands."""
 
 import argparse
-import os
 import sys
 import logging
 import logging.config
 
-import topobot
-
 from slackbot import settings
+from slackbot.bot import Bot  # NOQA pylint: disable=C0413
+
+import topobot
 
 settings.PLUGINS = ['topobot.plugin']
 #settings.ERRORS_TO = os.environ.get('SLACK_ERRORS_TO', 'gba')
 settings.DEBUG = True
 
-from slackbot.bot import Bot  # NOQA pylint: disable=C0413
 
 
-__author__ = 'Greg Albrecht <oss@undef.net>'
-__copyright__ = 'Copyright 2018 Greg Albrecht'
+__author__ = 'Greg Albrecht W2GMD <oss@undef.net>'
+__copyright__ = 'Copyright 2020 Greg Albrecht'
 __license__ = 'Apache License, Version 2.0'
 
 
-def cli():
+def cli() -> None:
+    """
+    Default Command Line function.
+    """
     parser = argparse.ArgumentParser(description='TopoBot')
-    parser.add_argument('-c', dest='cron', action='store_true')
+    parser.add_argument(
+        '-d',
+        dest='dot',
+        action='store_true',
+        help='Runs a one-off Topography Rendering and returns a DOT.'
+    )
+    parser.add_argument(
+        '-p',
+        dest='png',
+        action='store_true',
+        help='Runs a one-off Topography Rendering and returns a PNG.'
+    )
     args = parser.parse_args()
 
-    if args.cron:
-        run_cron()
+    if args.png:
+        run_png()
+    elif args.dot:
+        run_dot()
     else:
         run_bot()
 
-def run_cron():
+
+def run_png() -> None:
+    """
+    One-off command that returns path to a PNG file.
+    """
     topo_dot = topobot.gen_dot()
     topo_png = topobot.dot2png(topo_dot)
-    # TODO
+    print(topo_png)
 
-def run_bot():
+
+def run_dot() -> None:
+    """
+    One-off command that returns path to a DOT file.
+    """
+    topo_dot = topobot.gen_dot()
+    topo_dot = topobot.save_dot(topo_dot)
+    print(topo_dot)
+
+
+def run_bot() -> None:
+    """
+    Runs the Bot.
+    """
     lkw = {
         'format': (
             '%(asctime)s topobot %(levelname)s '

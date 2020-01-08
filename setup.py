@@ -13,12 +13,12 @@ import setuptools
 
 __title__ = 'topobot'
 __version__ = '1.0.0b1'
-__author__ = 'Greg Albrecht <oss@undef.net>'
-__copyright__ = 'Copyright 2019 Greg Albrecht'
+__author__ = 'Greg Albrecht W2GMD <oss@undef.net>'
+__copyright__ = 'Copyright 2020 Greg Albrecht'
 __license__ = 'Apache License, Version 2.0'
 
 
-def publish():
+def publish() -> None:
     """Function for publishing package to pypi."""
     if sys.argv[-1] == 'publish':
         os.system('python setup.py sdist')
@@ -32,7 +32,7 @@ publish()
 setuptools.setup(
     name=__title__,
     version=__version__,
-    description='TopoBot - Mesh Topography Bot.',
+    description='TopoBot - AREDN Mesh Topography Bot.',
     author='Greg Albrecht',
     author_email='oss@undef.net',
     packages=['topobot'],
@@ -45,8 +45,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         'requests',
-        'slackbot',
-        'dnspython'
+        'slackbot'
     ],
     entry_points={'console_scripts': ['topobot = topobot.cmd:cli']}
 )

@@ -1,8 +1,8 @@
 # Makefile for TopoBot.
 #
 # Source:: https://github.com/ampledata/topobot
-# Author:: Greg Albrecht <oss@undef.net>
-# Copyright:: Copyright 2018 Greg Albrecht
+# Author:: Greg Albrecht W2GMD <oss@undef.net>
+# Copyright:: Copyright 2020 Greg Albrecht
 # License:: Apache License, Version 2.0
 #
 
@@ -13,6 +13,9 @@
 all: develop
 
 install_requirements:
+	pip install -r requirements.txt
+
+install_requirements_tests:
 	pip install -r requirements.txt
 
 develop: remember
@@ -30,6 +33,12 @@ remember:
 	@echo
 	@echo "Hello from the Makefile..."
 	@echo "Don't forget to run: 'make install_requirements'"
+	@echo
+
+remember_tests:
+	@echo
+	@echo "Hello from the Makefile..."
+	@echo "Don't forget to run: 'make install_requirements_tests'"
 	@echo
 
 clean:
@@ -54,7 +63,7 @@ lint: remember
 
 pylint: lint
 
-mypy:
-	mypy --strict .
+mypy: remember_tests
+	mypy --ignore-missing-imports --strict .
 
 test: lint pep8 nosetests
