@@ -20,13 +20,14 @@ def default_handler(message: str) -> None:
 
 
 @slackbot.bot.respond_to('current', re.IGNORECASE)
-def current_topography(message: str) -> None:
+def current_topology(message: str) -> None:
     topo_dot = topobot.gen_dot()
     topo_png = topobot.dot2png(topo_dot)
-    message.channel.upload_file('Topography', topo_png)
+    message.channel.upload_file('Topology', topo_png)
+
 
 @slackbot.bot.respond_to('current2', re.IGNORECASE)
-def current2_topography(message: str) -> None:
+def current2_topology(message: str) -> None:
     topo_dot = topobot.gen_dot(span=2)
     topo_png = topobot.dot2png(topo_dot)
-    message.channel.upload_file('Topography', topo_png)
+    message.channel.upload_file('Topology', topo_png)

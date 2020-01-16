@@ -14,9 +14,7 @@ from slackbot.bot import Bot  # NOQA pylint: disable=C0413
 import topobot
 
 settings.PLUGINS = ['topobot.plugin']
-#settings.ERRORS_TO = os.environ.get('SLACK_ERRORS_TO', 'gba')
 settings.DEBUG = True
-
 
 
 __author__ = 'Greg Albrecht W2GMD <oss@undef.net>'
@@ -29,17 +27,24 @@ def cli() -> None:
     Default Command Line function.
     """
     parser = argparse.ArgumentParser(description='TopoBot')
-    parser.add_argument(
-        '-d',
-        dest='dot',
-        action='store_true',
-        help='Runs a one-off Topography Rendering and returns a DOT.'
-    )
+
     parser.add_argument(
         '-p',
         dest='png',
         action='store_true',
-        help='Runs a one-off Topography Rendering and returns a PNG.'
+        help='Runs a one-off Topology Rendering and returns a PNG.'
+    )
+    parser.add_argument(
+        '-b',
+        dest='bot_mode',
+        action='store_true',
+        help='Runs TopoBot as a Slack Bot.'
+    )
+    parser.add_argument(
+        '-d',
+        dest='dot',
+        action='store_true',
+        help='Runs a one-off Topology Rendering and returns a DOT.'
     )
     args = parser.parse_args()
 
@@ -47,8 +52,10 @@ def cli() -> None:
         run_png()
     elif args.dot:
         run_dot()
-    else:
+    elif args.bot_mode:
         run_bot()
+    else:
+        parser.print_help()
 
 
 def run_png() -> None:
@@ -86,7 +93,7 @@ def run_bot() -> None:
         'requests.packages.urllib3.connectionpool').setLevel(logging.WARNING)
 
     bot = Bot()
-    print('Starting TopoBot...')
+    print('Starting TopoBot as a Slack Bot...')
     bot.run()
 
 

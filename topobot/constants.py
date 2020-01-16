@@ -23,7 +23,7 @@ HELP_CMDS = """
 Available Commands:
 
     * help
-    * current - Gets Current Topography
-    * current2 - Gets Current Topography with a Hostname span=2
+    * current - Gets Current Topology
+    * current2 - Gets Current Topology with a Hostname span=2
 
 """

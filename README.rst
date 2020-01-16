@@ -1,32 +1,54 @@
-TopoBot - AREDN Topography Bot for Slack
-****************************************
+TopoBot - AREDN Mesh Network Topology Bot
+*****************************************
 
-Topo(graphy) Bot is a Slack bot to query and display AREDN OLSR topography information.
+TopoBot is a command-line tool to generate topology graphs of AREDN Mesh Networks.
+
+Additionally, TopBot can be run as a Slack bot and will respond to queries in a Slack group.
 
 Usage
 =====
 
-From Slack `/msg @topobot current` to receive a PNG image of the latest topography.
+There are two modes in which you can use TopBot:
+    1. Command Line
+    2. Slack Bot
 
-Running
-=======
+Command Line Usage
+==================
 
-Ensure the host running this bot has an AREDN node as a Name resolver.
+Generate a PNG of the Mesh Network Topology from the command line::
 
-Run the bot::
+    $ export TOPO_HOST=127.17.0.1
+    $ topobot -p
+    /var/folders/nl/7nqyxlfn05dgqlmvfyc13jc00000gn/T/tmp8txp7udf.png
+    $ open -a preview  /var/folders/nl/7nqyxlfn05dgqlmvfyc13jc00000gn/T/tmp8txp7udf.png
 
-    export TOPO_HOST='172.17.0.1'
-    export SLACKBOT_API_TOKEN='xoxb-XXXX-XXXX'
-    topobot
+Generate a GraphViz DOT of the Mesh Network Topology from the command line::
 
+    $ export TOPO_HOST=127.17.0.1
+    $ topobot -p
+    /var/folders/nl/7nqyxlfn05dgqlmvfyc13jc00000gn/T/tmp8txp7udf.dot
+
+Slack Bot Usage
+===============
+
+To run TopoBot as a Slack bot::
+
+    $ export TOPO_HOST=127.17.0.1
+    $ export SLACKBOT_API_TOKEN='xoxb-XXXX-XXXX'
+    $ topobot -s
+
+Once TopoBot is running as a Slack bot, you can message the bot with the phrase **current**, and the bot will reply with
+a PNG of the current AREDN Mesh Network Topology.
 
 Installation
 ============
 
-You'll need to create a Slack Bot and create a Slack Bot API Token, then::
+On most Debian or Ubuntu-based Linux systems you'll need the **graphviz** and **imagemagick** packages installed::
 
-    $ sudo apt-get install graphviz
-    $ sudo apt-get install imagemagick -y
+    $ sudo apt-get install graphviz imagemagick -y
+
+Then install TopoBot from PyPI::
+
     $ pip install topobot
 
 

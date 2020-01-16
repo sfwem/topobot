@@ -12,7 +12,7 @@ import sys
 import setuptools
 
 __title__ = 'topobot'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 __author__ = 'Greg Albrecht W2GMD <oss@undef.net>'
 __copyright__ = 'Copyright 2020 Greg Albrecht'
 __license__ = 'Apache License, Version 2.0'
@@ -32,7 +32,7 @@ publish()
 setuptools.setup(
     name=__title__,
     version=__version__,
-    description='TopoBot - AREDN Mesh Topography Bot.',
+    description='TopoBot - AREDN Mesh Network Topology Bot.',
     author='Greg Albrecht',
     author_email='oss@undef.net',
     packages=['topobot'],
