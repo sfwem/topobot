@@ -19,7 +19,7 @@ ENV TOPOBOT_MODE=-b
 ENV SLACKBOT_API_TOKEN=changeme
 
 ADD . .
-RUN pip install .
+RUN python setup.py install
 
 # Allows us to override the startup cmd at runtime:
 ENTRYPOINT ["./docker-scripts/docker-entrypoint.sh"]
