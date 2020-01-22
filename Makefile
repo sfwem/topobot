@@ -68,6 +68,8 @@ mypy: remember_tests
 
 test: lint pep8 nosetests
 
+md:
+	pandoc README.rst -f rst -t markdown -o README.md
 
 # Build Docker image
 build: docker_build

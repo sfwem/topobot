@@ -1,2 +1,8 @@
 topology.dot
 topology.png
+.idea/
+.mypy_cache/
+__pycache__/
+dist/
+topobot.egg-info/
+topobot/__pycache__/
