@@ -20,6 +20,10 @@ TOPO_HOST = os.environ.get('TOPO_HOST', 'localnode.local.mesh')
 TOPO_PORT = int(os.environ.get('TOPO_PORT', 2006))
 
 HELP_CMDS = """
+TopoBot generates a AREDN Mesh Network Topology on demand.
+
+Each mesh node appears in an oval. Arrows between nodes indicate the link cost (i.e. expected number of transmissions required per packet). Solid lines between nodes indicate Ethernet links. Nodes beginning with the same call sign are grouped together.
+
 Available Commands:
 
     * help

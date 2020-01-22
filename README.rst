@@ -4,6 +4,10 @@ TopoBot - AREDN Mesh Network Topology Bot
 
 TopoBot is a command-line tool to generate topology graphs of AREDN Mesh Networks.
 
+From VE3IRR's "bbhn-tools":
+
+    Each mesh node appears in an oval. Arrows between nodes indicate the link cost (i.e. expected number of transmissions required per packet). Solid lines between nodes indicate Ethernet links. Nodes beginning with the same call sign are grouped together.
+
 Additionally, TopBot can be run as a Slack bot and will respond to queries in a Slack group.
 
 .. contents::
